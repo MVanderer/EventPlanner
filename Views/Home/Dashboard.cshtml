@@ -1,0 +1,71 @@
+@{
+    ViewData["Title"] = "Home";
+}
+@using Microsoft.AspNetCore.Http
+@using System
+@{int myId = (int)@Context.Session.GetInt32 ("LoggedInUserID");}
+@{string myName = @Context.Session.GetString("LoggedInUserName");}
+@using BeltExam.Models
+
+
+<div class="navbar">
+    <h1>Dojo Activity Center</h1>
+    <div>
+        <h4>Welcome, @myName</h4>
+        <a href="/logout">Log off</a>
+    </div>
+</div>
+    <div id="activities">
+        <table>
+            <tr>
+                <th>Activity</th>
+                <th>Date and Time</th>
+                <th>Duration</th>
+                <th>Event Coordinator</th>
+                <th>Number of Participants</th>
+                <th>Actions</th>
+            </tr>
+        @foreach(var activity in ViewBag.allActs){
+            if (DateTime.Now<activity.StartDate){
+            <tr>
+                <td>
+                    <a href="/activity/@activity.ActivityId">
+                    @activity.ActivityTitle
+                    </a>
+                    </td>
+                <td>@activity.StartDate</td>
+                <td>@activity.Duration @activity.TimeMeasure</td>
+                <td>@activity.Coordinator.FirstName @activity.Coordinator.LastName</td>
+                <td>@activity.Participations.Count</td>
+                <td>
+                    @if(activity.Coordinator.UserId==myId){
+                        <a href="/deleteactivity/@activity.ActivityId">DELETE</a>
+                    }
+                    else {
+                        bool hasRSVPed = false;
+                        int pId = 0;
+                        foreach (var part in activity.Participations){
+                            if(part.UserId==myId){
+                                hasRSVPed=true;
+                                pId=part.ParticipationId;
+                                break;
+                            }
+                        }
+                        if (hasRSVPed){
+                            <a href="/leave/@pId">Leave</a>
+                        }
+                        else{
+                            <a href="/join/@activity.ActivityId">Join</a>
+                        }
+                    }
+                </td>
+            </tr>
+
+            }
+        }
+        </table>
+    </div>
+
+    <a href="/New" id="newAct">
+    <button>Add New Activity</button>
+    </a>

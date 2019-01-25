@@ -1,0 +1,115 @@
+/*Write all of your CSS here*/
+* {
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+
+form * {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.gateWrapper div{
+    display: inline-block;
+    min-width: 30%;
+    margin:auto;
+}
+h1, h2{
+    margin-top: 20px;
+    text-align: center;
+    display: block;
+}
+.gateWrapper{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+
+label{
+    font-weight: bolder;
+    border-top: 1px solid black;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+input, textarea{
+    padding: 5px;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    vertical-align: middle;
+    border-bottom: 1px solid black;
+}
+
+.navbar div, .navbar h1 {
+    display: inline-block;
+    margin: auto 0;
+}
+
+.navbar div * {
+    display: inline;
+}
+
+button {
+    padding: 5px;
+}
+/* table stuff */
+table{
+    display: block;
+    border-collapse: collapse;
+    min-width: 100%;
+}
+
+table td, table th{
+    padding: 8px;
+}
+
+table tr:nth-child(even){
+    background-color: rgb(223, 247, 255);
+}
+table th:hover{
+    background-color: rgb(186, 238, 254);
+}
+
+.wrapForm{
+    max-width: 800px;
+    margin: auto;
+}
+
+span{
+    color: red;
+
+}
+
+#activities{
+    margin: auto;
+    max-width: 900px;
+}
+
+#newAct button{
+    margin-left: 50px;
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+    font-size: 120%;
+}
+
+h5, h4{
+    margin-top: 15px;
+}
+
+a{
+    margin: 12px;
+}

@@ -1,0 +1,41 @@
+@using Microsoft.AspNetCore.Http
+@using System
+@{int myId = (int)@Context.Session.GetInt32 ("LoggedInUserID");}
+
+<div class="wrapForm">
+
+    <h2>@ViewBag.act.ActivityTitle</h2>
+    <h4>Event Coordinator: @ViewBag.act.Coordinator.FirstName @ViewBag.act.Coordinator.LastName</h4>
+    <h5>Description</h5>
+    <p>@ViewBag.act.Description</p>
+    <h5>Participants</h5>
+    <ul>
+    @foreach (var part in ViewBag.act.Participations){
+        <li>@part.User.FirstName</li>
+    }
+
+    </ul>
+
+    @if(ViewBag.act.Coordinator.UserId==myId){
+        <a href="/deleteactivity/@ViewBag.act.ActivityId">DELETE</a>
+        }
+        else {
+            bool hasRSVPed = false;
+            int pId = 0;
+            foreach (var part in @ViewBag.act.Participations){
+            if(part.UserId==myId){
+                hasRSVPed=true;
+                pId=part.ParticipationId;
+                break;
+            }
+        }
+            if (hasRSVPed){
+                <a href="/leave/@pId">Leave</a>
+            }
+            else{
+                <a href="/join/@ViewBag.act.ActivityId">Join</a>
+                }
+        }
+
+    <a href="/Home">Back to the list of activities</a>
+</div>

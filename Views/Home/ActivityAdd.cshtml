@@ -1,0 +1,50 @@
+@model BeltExam.Models.Activity
+
+<div class="navbar">
+    <h1>Dojo Activity Center</h1>
+    <div>
+        <a href="/Home">Home</a>
+        <a href="/logout">Log off</a>
+    </div>
+</div>
+<div class="wrapForm">
+
+<h2>Create an Activity</h2>
+<form asp-controller="Home" asp-action="ActivityAdd" method="POST">
+    <div>
+        <div>
+            <label asp-for="ActivityTitle"></label>
+            <input asp-for="ActivityTitle">
+            <span asp-validation-for="ActivityTitle"></span>
+        </div>
+        <div>
+            <label asp-for="StartDate"></label>
+            <input asp-for="StartDate">
+            <span asp-validation-for="StartDate"></span>
+        </div>
+    </div>
+    <div>
+        <div>
+            <label asp-for="StartTime"></label>
+            <input asp-for="StartTime">
+            <span asp-validation-for="StartTime"></span>
+        </div>
+        <div>
+            <div>
+                <label asp-for="Duration"></label>
+                <input asp-for="Duration">
+                <span asp-validation-for="Duration"></span>
+            </div>
+            <select asp-for="TimeMeasure">
+                <option value="days" selected="selected">Days</option>
+                <option value="hours">Hours</option>
+                <option value="minutes">Minutes</option>
+            </select>
+        </div>
+    </div>
+    <label asp-for="Description"></label>
+    <textarea asp-for="Description"></textarea>
+
+    <button>Create</button>
+</form>
+</div>
